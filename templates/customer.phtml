@@ -1,0 +1,94 @@
+<?php include './templates/blocs/header.phtml' ?>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    <h1><?= $customer['customerName']?></h1>
+                    <h2><?= $customer['phone']?></h2>
+                </div>
+                <div class="col-4">
+                    <h4>C.A. effectué&nbsp;<?= euro($customer['CA'])?></h4>
+                    <h5>Limite de crédit&nbsp;<?= euro($customer['creditLimit'])?></h5>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="customer-detail">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        <p><strong>Contact&nbsp;:</strong> <?= $customer['contactLastName']?> <?= $customer['contactFirstName']?></p>
+                        <p><strong>Adresse&nbsp;:</strong></p>
+                        <p><?= $customer['addressLine1']?></p>
+                        <?php if($customer['addressLine2']!= ""):?>
+                        <p><?= $customer['addressLine2']?></p>
+                        <?php endif;?>
+                        <p><?= $customer['postalCode']?> -<?= $customer['customerCity']?> - <?= $customer['customerCountry']?></p>
+                        <?php if($customer['state'] != ""):?> 
+                        <p><?php ($customer['state'])?></p>
+                        <?php endif;?>                 
+                    </div>
+                    <div class="col-6">
+                        <h3>Commercial</h3><?= $customer['lastName']?> <?= $customer['firstName']?>
+                        <p><?= $customer['email']?></p>
+                        <p><?= $customer['officeCity']?> - <?= $customer['officeCountry']?></p>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="customer-orders">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h2>Commandes de ce client</h2>
+                        <table class="table table-sm table-striped table-hover">
+                            <tr>
+                                <th class="px-3">Numéro de commande</th>
+                                <th class="px-3">Date</th>
+                                <th class="px-3">Due le</th>
+                                <th class="px-3">Expédiée le</th>
+                                <th class="px-3">Status</th>
+                                <th class="px-3">Nb pièces</th>
+                                <th class="px-3">Total</th>
+                            </tr>
+                            <?php foreach ($orders as $order) : ?>
+                                <tr>
+                                    <td class="px-3">
+                                        <a href="order.php?id=<?= $order['orderNumber']?>">
+                                        <?= $order['orderNumber']?>
+                                        </a>
+                                    </td>
+                                    <td class="px-3"><?= $order['orderDate']?></td>
+                                    <td class="px-3"><?= $order['requiredDate']?></td>
+                                    <td class="px-3"><?= $order['shippedDate']?></td>
+                                    <td class="px-3">
+                                        <?php 
+                                        $status="success";
+                                        if($order['status']=="Cancelled"){
+                                            $status='danger';
+                                        }
+                                        elseif($order['status']=="Disputed"){
+                                            $status='warning';
+                                        }
+                                            elseif($order['status']=="In Process"){
+                                                $status='primary';
+                                            }
+                                        ?>
+
+                                        <span class="badge text-bg-<?=$status?> w-100"><?= $order['status']?></span>
+         
+                                    </td>
+                                    <td class="px-3"><?= $order['quantity']?></td>
+                                    <td class="px-3"><?= euro($order['total'])?></td>
+                                </tr>
+                                <?php endforeach; ?>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+<?php include './templates/blocs/footer.phtml' ?>

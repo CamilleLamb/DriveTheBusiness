@@ -1,0 +1,25 @@
+<?php 
+
+include './templates/blocs/header.phtml' ?>
+    <header></header>
+    <main>
+        <section id='section-products-sales'>
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-4">
+                        <?php include './templates/blocs/home/bloc-best-sellers.phtml'; ?>
+                    </div>
+                    
+                    <div class="col-8">
+                        <?php include './templates/blocs/home/bloc-productlines.phtml'; ?>
+                        <?php include './templates/blocs/home/bloc-top-employees.phtml'; ?>
+                        <?php include './templates/blocs/home/bloc-top-customers.phtml'; ?>
+                        <?php include './templates/blocs/home/bloc-product-out-of-stock.phtml'; ?>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main> 
+<?php include './templates/blocs/footer.phtml' ?>

@@ -1,0 +1,21 @@
+<h2>Top <?=count($bestCustomers)?> des clients</h2>
+<!-- Tableau affichant les meilleurs clients -->
+<table class="table table-sm table-striped table-hover">
+    <tr><!-- Noms des colonnes -->
+        <th class="px-3">Client</th>
+        <th class="px-3">Chiffre d'affaire</th>
+    </tr><!-- Boucle parcourant les meilleurs clients -->
+    <?php foreach($bestCustomers as $customer) : ?>
+    <tr>
+        <td class="px-3">
+            <!-- Lien vers la page du client avec son ID -->
+            <a href="customer.php?id=<?=$customer['customerNumber']?>">
+                <!-- Nom du client -->
+               <?=$customer['customerName']?>
+            </a>
+        </td>
+        <!-- Chiffre d'A généré -->
+        <td class="px-3"><?=euro($customer['CA'])?></td>
+    </tr>
+    <?php endforeach;?>
+</table>

@@ -1,0 +1,27 @@
+<h2>Articles presque épuisés</h2>
+<!-- Tableau affichant les produits presque épuisés -->
+<table class="table table-sm table-striped table-hover">
+    <tr><!-- En-tête des colonnes -->
+        <th class="px-3">Produit</th>
+        <th class="px-3">Catégorie</th>
+        <th class="px-3">Échelle</th>
+        <th class="px-3">Pièces restantes</th>
+    </tr>
+<!-- Boucle parcourant les produits presque épuisés -->
+<?php foreach($outOfStock as $product) : ?>
+        <tr>
+            <td class="px-3">
+                <!-- Lien vers la page du produit avec son ID -->
+                <a href="product.php?id=<?=$product['productCode']?>">
+                    <!-- Nom du produit -->
+                   <?=$product['productName']?>
+                </a>
+            </td>
+            <!-- Informations sur le produit -->
+            <td class="px-3"><?=$product['productLine']?></td>
+            <td class="px-3"><?=$product['productScale']?></td>
+            <td class="px-3"><?=$product['quantityInStock']?></td>
+        </tr>
+<?php endforeach;?>
+</table>
+

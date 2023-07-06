@@ -1,0 +1,23 @@
+<h2>Top <?=count($bestSellers)?> des produits</h2>
+<!-- Tableau affichant les best-sellers -->
+<table class="table table-sm table-striped table-hover">
+    <!-- Entêtes des colonnes -->
+    <tr>
+        <th class="px-3">Produit</th>
+        <th class="px-3">Pièces vendues</th>
+    </tr>
+    <!-- Boucle parcourant les meilleurs ventes -->
+    <?php foreach ($bestSellers as $product) : ?>
+        <tr>
+            <td class="px-3">
+                <!-- Lien vers la page du produit avec son ID -->
+                <a href="product.php?id=<?=$product['productCode']?>">
+                <!-- Nom du produit -->
+                <?=$product['productName']?> 
+                </a>
+            </td>
+            <!-- Quantité vendue du produit -->
+            <td class="px-3"><?=$product['quantity']?></td>
+        </tr>
+        <?php endforeach; ?>
+</table>

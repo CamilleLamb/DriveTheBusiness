@@ -1,0 +1,16 @@
+<h2>Catégories</h2>
+<!-- Liste des catégories -->
+<ul class="list-unstyled d-flex">
+    <!-- Boucle parcourant les catégories de produits -->
+    <?php foreach($productLines as $line) : ?>
+    <li><!-- Lien vers la page de la catégorie -->
+        <a href="productLine.php?id=<?=$line['productLine']?>" class="btn btn-primary mx-1">
+            <!-- Nom de la catégorie -->
+            <?=$line['productLine']?>
+            <br>
+            <!-- Affichage de sa quantity -->
+            <span class="badge text-bg-danger"><?=$line['quantity']?></span>
+        </a>
+    </li>
+    <?php endforeach;?>
+</ul>

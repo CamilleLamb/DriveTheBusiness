@@ -1,0 +1,72 @@
+<?php include './templates/blocs/header.phtml' ?>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    <h1><?= $product['productName']?> </h1>
+                    <h2><?= $product['productLine']?></h2>
+                </div>
+                <div class="col-4 text-end">
+                    <h5>En stock&nbsp;: <?= $product['quantityInStock']?></h5>
+                    <h5>Prix d'achat&nbsp;: <?= euro($product['buyPrice'])?></h5>
+                    <h5>Prix de vente conseillé&nbsp;: <?= euro($product['MSRP'])?></h5>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="product-detail">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <p><strong>Code produit&nbsp;:</strong> <?= $product['productCode']?></p>
+                        <p><strong>Fabricant&nbsp;:</strong> <?= $product['productVendor']?></p>
+                        <p><strong>Échelle&nbsp;:</strong> <?= $product['productScale']?></p>
+                    </div>
+                    <div class="col-8">
+                        <p><strong>Description&nbsp;:</strong></p>
+                        <p><?= $product['productDescription']?></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="product-orders">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h2>Commandes contenant cet article</h2>
+                        <table class="table table-sm table-striped table-hover">
+                            <tr>
+                                <th class="px-3">Numéro de commande</th>
+                                <th class="px-3">Date</th>
+                                <th class="px-3">Client</th>
+                                <th class="px-3">Quantité</th>
+                                <th class="px-3">Prix unitaire</th>
+                                <th class="px-3">Total</th>
+                            </tr>
+                            <?php foreach ($orders as $order) : ?>
+                            <tr>
+                                <td class="px-3">
+                                    <a href="order.php?id=<?=$order['orderNumber']?>">
+                                        <?=$order['orderNumber']?>
+                                    </a>
+                                </td>
+                                <td class="px-3"><?=$order['orderDate']?></td>
+                                <td class="px-3">
+                                    <a href="customer.php?id=<?=$order['customerNumber']?>">
+                                    <?=$order['customerName']?>
+                                    </a>
+                                </td>
+                                <td class="px-3"><?=$order['quantityOrdered']?></td>
+                                <td class="px-3"><?=euro($order['priceEach'])?></td>
+                                <td class="px-3"><?=euro($order['total'])?></td>
+                            </tr>
+                            <?php endforeach;?>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+<?php include './templates/blocs/footer.phtml' ?>

@@ -1,0 +1,72 @@
+/* à revoir
+
+<?php include './templates/blocs/header.phtml' ?>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    <h1> <?= $employee['lastName']?> <?= $employee['firstName']?></h1>
+                    <h2><?= $employee['jobTitle']?></h2>
+                    <h3><?= $employee['email']?></h3>
+                    <p><strong>N+1&nbsp;: </strong><a href="employee.php?id=<?= $employee['reportsTo']?>"></a></p>
+                </div>
+                <div class="col-4">
+                    <h4>C.A. effectué&nbsp;: <?= $employee['resultat round sum']?></h4>
+                    <h4>Bureau&nbsp;: </strong><a href="office.php?id=<?= $employee['officeCode']?>"> <?= $employee['state']?> - <?= $employee['country']?></a></h4>
+                    
+                    <p>
+                        <strong>Tél.&nbsp;: </strong><?= $employee['phone']?><br>
+                        <strong>Adresse&nbsp;: </strong><br>
+                        <?= $employee['addressLine1']?><br>
+                        <?= $employee['addressLine2']?><br>
+                        <?= $employee['postalCode']?> - <?= $employee['city']?> - <?= $employee['state']?> - <?= $employee['country']?>
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="order-detail">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h2>Commandes de ses clients</h2>
+                        <table class="table table-sm table-striped table-hover">
+                            <tr>
+                                <th class="px-3"><?= $employee['orderNumber']?></th>
+                                <th class="px-3">Client</th>
+                                <th class="px-3">Date</th>
+                                <th class="px-3">Due le</th>
+                                <th class="px-3">Expédiée le</th>
+                                <th class="px-3">Status</th>
+                                <th class="px-3">Nb pièces</th>
+                                <th class="px-3">Total</th>
+                            </tr>
+                            <?php foreach($orders AS $order) : ?>
+                                <tr>
+                                    <td class="px-3">
+                                        <a href="order.php?id=<?=$order['orderNumber']?>">
+                                        <?=$order['orderNumber']?>
+                                        </a>
+                                    </td>
+                                    <td class="px-3"><a href="customer.php?id=<?=$order['']?>"><?=$order['']?></a></td>
+                                    <td class="px-3"><?=$order['']?></td>
+                                    <td class="px-3"><?=$order['']?></td>
+                                    <td class="px-3"><?=$order['']?></td>
+                                    <td class="px-3"><?=$order['']?>
+                                    <span class="badge text-bg-primary w-100">
+                                    <?=$order['']?>
+                                    </span>
+                                    </td>
+                                    <td class="px-3"><?=$order['']?></td>
+                                    <td class="px-3"><?=euro($order)['']?></td>
+                                </tr>
+                                
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+<?php include './templates/blocs/footer.phtml' ?>
